@@ -1,0 +1,614 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		401C66572466650400087B10 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C66562466650400087B10 /* HomeView.swift */; };
+		401C66592466653300087B10 /* EnterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C66582466653300087B10 /* EnterView.swift */; };
+		401C665B2466655B00087B10 /* FindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C665A2466655B00087B10 /* FindView.swift */; };
+		401C665D2466657200087B10 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C665C2466657200087B10 /* UserView.swift */; };
+		401C66612466914E00087B10 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 401C66602466914E00087B10 /* HealthKit.framework */; };
+		401C666324669F0900087B10 /* RequestAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401C666224669F0900087B10 /* RequestAccess.swift */; };
+		407DF59C2498E1FC0055CA1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 407DF59B2498E1FC0055CA1F /* Assets.xcassets */; };
+		407DF59F2499DC910055CA1F /* EnterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407DF59E2499DC910055CA1F /* EnterDetailView.swift */; };
+		407DF5A12499F0E80055CA1F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407DF5A02499F0E80055CA1F /* MapView.swift */; };
+		407DF5A32499F28C0055CA1F /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407DF5A22499F28C0055CA1F /* CircleImage.swift */; };
+		407DF5DA249A12840055CA1F /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 407DF5D1249A0E620055CA1F /* libc++.tbd */; };
+		407DF5DB249A128E0055CA1F /* libc.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 407DF5D3249A0EB60055CA1F /* libc.tbd */; };
+		407DF5DC249A129C0055CA1F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 407DF5D2249A0EA90055CA1F /* libz.tbd */; };
+		407DF5DE249A138A0055CA1F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407DF5DD249A138A0055CA1F /* CoreTelephony.framework */; };
+		407DF5E0249A13EE0055CA1F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407DF5DF249A13EE0055CA1F /* SystemConfiguration.framework */; };
+		407DF5E2249A14050055CA1F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407DF5E1249A14050055CA1F /* GLKit.framework */; };
+		407DF5E8249E05830055CA1F /* MainStaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407DF5E7249E05830055CA1F /* MainStaseView.swift */; };
+		407DF5EA249E09280055CA1F /* RemoteLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407DF5E9249E09280055CA1F /* RemoteLink.swift */; };
+		407F4F4624591109002552BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407F4F4524591109002552BE /* AppDelegate.swift */; };
+		407F4F4824591109002552BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407F4F4724591109002552BE /* SceneDelegate.swift */; };
+		407F4F4B24591109002552BE /* Stase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 407F4F4924591109002552BE /* Stase.xcdatamodeld */; };
+		407F4F4D24591109002552BE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407F4F4C24591109002552BE /* ContentView.swift */; };
+		407F4F522459110C002552BE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 407F4F512459110C002552BE /* Preview Assets.xcassets */; };
+		407F4F552459110C002552BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 407F4F532459110C002552BE /* LaunchScreen.storyboard */; };
+		40A82CC22487A0C40049FBF8 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A82CC12487A0C40049FBF8 /* LogInView.swift */; };
+		40A82CC42487A4F90049FBF8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A82CC32487A4F90049FBF8 /* Constants.swift */; };
+		40A82CC624889D700049FBF8 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A82CC524889D700049FBF8 /* SearchBar.swift */; };
+		93E0AEB0E6BB3944F6DE8CB7 /* Pods_Stase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F41B5973B388D1C38659A894 /* Pods_Stase.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		401C66562466650400087B10 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		401C66582466653300087B10 /* EnterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterView.swift; sourceTree = "<group>"; };
+		401C665A2466655B00087B10 /* FindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindView.swift; sourceTree = "<group>"; };
+		401C665C2466657200087B10 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		401C66602466914E00087B10 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		401C666224669F0900087B10 /* RequestAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAccess.swift; sourceTree = "<group>"; };
+		407DF59B2498E1FC0055CA1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		407DF59E2499DC910055CA1F /* EnterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterDetailView.swift; sourceTree = "<group>"; };
+		407DF5A02499F0E80055CA1F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		407DF5A22499F28C0055CA1F /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
+		407DF5D1249A0E620055CA1F /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		407DF5D2249A0EA90055CA1F /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		407DF5D3249A0EB60055CA1F /* libc.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libc.tbd; path = usr/lib/libc.tbd; sourceTree = SDKROOT; };
+		407DF5D4249A10310055CA1F /* AMapFoundationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMapFoundationKit.framework; path = Stase/Frameworks/AMapFoundationKit.framework; sourceTree = "<group>"; };
+		407DF5D5249A10310055CA1F /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MAMapKit.framework; path = Stase/Frameworks/MAMapKit.framework; sourceTree = "<group>"; };
+		407DF5D6249A10310055CA1F /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMapSearchKit.framework; path = Stase/Frameworks/AMapSearchKit.framework; sourceTree = "<group>"; };
+		407DF5DD249A138A0055CA1F /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		407DF5DF249A13EE0055CA1F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		407DF5E1249A14050055CA1F /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		407DF5E7249E05830055CA1F /* MainStaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStaseView.swift; sourceTree = "<group>"; };
+		407DF5E9249E09280055CA1F /* RemoteLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLink.swift; sourceTree = "<group>"; };
+		407DF5EB249E15C50055CA1F /* Stase.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Stase.entitlements; sourceTree = "<group>"; };
+		407F4F4224591109002552BE /* Stase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stase.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		407F4F4524591109002552BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		407F4F4724591109002552BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		407F4F4A24591109002552BE /* Stase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Stase.xcdatamodel; sourceTree = "<group>"; };
+		407F4F4C24591109002552BE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		407F4F512459110C002552BE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		407F4F542459110C002552BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		407F4F562459110C002552BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40A82CC12487A0C40049FBF8 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		40A82CC32487A4F90049FBF8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		40A82CC524889D700049FBF8 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		485496BD5EB50B7A303A3A70 /* Pods-Stase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stase.debug.xcconfig"; path = "Target Support Files/Pods-Stase/Pods-Stase.debug.xcconfig"; sourceTree = "<group>"; };
+		728ECC022E09386EE8F4E162 /* Pods-Stase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stase.release.xcconfig"; path = "Target Support Files/Pods-Stase/Pods-Stase.release.xcconfig"; sourceTree = "<group>"; };
+		F41B5973B388D1C38659A894 /* Pods_Stase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		407F4F3F24591109002552BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				407DF5E2249A14050055CA1F /* GLKit.framework in Frameworks */,
+				407DF5E0249A13EE0055CA1F /* SystemConfiguration.framework in Frameworks */,
+				407DF5DE249A138A0055CA1F /* CoreTelephony.framework in Frameworks */,
+				407DF5DC249A129C0055CA1F /* libz.tbd in Frameworks */,
+				407DF5DB249A128E0055CA1F /* libc.tbd in Frameworks */,
+				407DF5DA249A12840055CA1F /* libc++.tbd in Frameworks */,
+				401C66612466914E00087B10 /* HealthKit.framework in Frameworks */,
+				93E0AEB0E6BB3944F6DE8CB7 /* Pods_Stase.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		401C665F2466914E00087B10 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				407DF5E1249A14050055CA1F /* GLKit.framework */,
+				407DF5DF249A13EE0055CA1F /* SystemConfiguration.framework */,
+				407DF5DD249A138A0055CA1F /* CoreTelephony.framework */,
+				407DF5D4249A10310055CA1F /* AMapFoundationKit.framework */,
+				407DF5D6249A10310055CA1F /* AMapSearchKit.framework */,
+				407DF5D5249A10310055CA1F /* MAMapKit.framework */,
+				407DF5D3249A0EB60055CA1F /* libc.tbd */,
+				407DF5D2249A0EA90055CA1F /* libz.tbd */,
+				407DF5D1249A0E620055CA1F /* libc++.tbd */,
+				401C66602466914E00087B10 /* HealthKit.framework */,
+				F41B5973B388D1C38659A894 /* Pods_Stase.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		407DF59D2499DC550055CA1F /* enter */ = {
+			isa = PBXGroup;
+			children = (
+				407DF59E2499DC910055CA1F /* EnterDetailView.swift */,
+			);
+			path = enter;
+			sourceTree = "<group>";
+		};
+		407F4F3924591109002552BE = {
+			isa = PBXGroup;
+			children = (
+				407F4F4424591109002552BE /* Stase */,
+				407F4F4324591109002552BE /* Products */,
+				401C665F2466914E00087B10 /* Frameworks */,
+				41BF2FC8B7F5492064B27162 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		407F4F4324591109002552BE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				407F4F4224591109002552BE /* Stase.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		407F4F4424591109002552BE /* Stase */ = {
+			isa = PBXGroup;
+			children = (
+				407DF5EB249E15C50055CA1F /* Stase.entitlements */,
+				407F4F5E24598265002552BE /* View */,
+				407F4F5D24598201002552BE /* Soure */,
+				407F4F5C245981E7002552BE /* Resore */,
+				407F4F502459110C002552BE /* Preview Content */,
+			);
+			path = Stase;
+			sourceTree = "<group>";
+		};
+		407F4F502459110C002552BE /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				407F4F512459110C002552BE /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		407F4F5C245981E7002552BE /* Resore */ = {
+			isa = PBXGroup;
+			children = (
+				407DF59B2498E1FC0055CA1F /* Assets.xcassets */,
+				407F4F562459110C002552BE /* Info.plist */,
+				407F4F4924591109002552BE /* Stase.xcdatamodeld */,
+			);
+			path = Resore;
+			sourceTree = "<group>";
+		};
+		407F4F5D24598201002552BE /* Soure */ = {
+			isa = PBXGroup;
+			children = (
+				407F4F6124598342002552BE /* core */,
+				407F4F60245982F0002552BE /* base */,
+				407F4F5F245982D8002552BE /* main */,
+			);
+			path = Soure;
+			sourceTree = "<group>";
+		};
+		407F4F5E24598265002552BE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				407F4F532459110C002552BE /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		407F4F5F245982D8002552BE /* main */ = {
+			isa = PBXGroup;
+			children = (
+				407F4F4524591109002552BE /* AppDelegate.swift */,
+				407F4F4724591109002552BE /* SceneDelegate.swift */,
+				407F4F4C24591109002552BE /* ContentView.swift */,
+			);
+			path = main;
+			sourceTree = "<group>";
+		};
+		407F4F60245982F0002552BE /* base */ = {
+			isa = PBXGroup;
+			children = (
+				401C666224669F0900087B10 /* RequestAccess.swift */,
+				40A82CC32487A4F90049FBF8 /* Constants.swift */,
+				40A82CC524889D700049FBF8 /* SearchBar.swift */,
+				407DF5A02499F0E80055CA1F /* MapView.swift */,
+				407DF5A22499F28C0055CA1F /* CircleImage.swift */,
+				407DF5E9249E09280055CA1F /* RemoteLink.swift */,
+			);
+			path = base;
+			sourceTree = "<group>";
+		};
+		407F4F6124598342002552BE /* core */ = {
+			isa = PBXGroup;
+			children = (
+				407DF5E7249E05830055CA1F /* MainStaseView.swift */,
+				401C66562466650400087B10 /* HomeView.swift */,
+				401C66582466653300087B10 /* EnterView.swift */,
+				407DF59D2499DC550055CA1F /* enter */,
+				401C665A2466655B00087B10 /* FindView.swift */,
+				401C665C2466657200087B10 /* UserView.swift */,
+				40A82CC12487A0C40049FBF8 /* LogInView.swift */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		41BF2FC8B7F5492064B27162 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				485496BD5EB50B7A303A3A70 /* Pods-Stase.debug.xcconfig */,
+				728ECC022E09386EE8F4E162 /* Pods-Stase.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		407F4F4124591109002552BE /* Stase */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 407F4F592459110C002552BE /* Build configuration list for PBXNativeTarget "Stase" */;
+			buildPhases = (
+				A0BEA339FDB9692B2183F98D /* [CP] Check Pods Manifest.lock */,
+				407F4F3E24591109002552BE /* Sources */,
+				407F4F3F24591109002552BE /* Frameworks */,
+				407F4F4024591109002552BE /* Resources */,
+				8093739BF8505BF0179DB68E /* [CP] Embed Pods Frameworks */,
+				9CEFFBC22E879F4A27119724 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Stase;
+			productName = Stase;
+			productReference = 407F4F4224591109002552BE /* Stase.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		407F4F3A24591109002552BE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1140;
+				LastUpgradeCheck = 1140;
+				ORGANIZATIONNAME = "宋志勇";
+				TargetAttributes = {
+					407F4F4124591109002552BE = {
+						CreatedOnToolsVersion = 11.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 407F4F3D24591109002552BE /* Build configuration list for PBXProject "Stase" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 407F4F3924591109002552BE;
+			productRefGroup = 407F4F4324591109002552BE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				407F4F4124591109002552BE /* Stase */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		407F4F4024591109002552BE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				407F4F552459110C002552BE /* LaunchScreen.storyboard in Resources */,
+				407DF59C2498E1FC0055CA1F /* Assets.xcassets in Resources */,
+				407F4F522459110C002552BE /* Preview Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8093739BF8505BF0179DB68E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Stase/Pods-Stase-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Stase/Pods-Stase-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Stase/Pods-Stase-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9CEFFBC22E879F4A27119724 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Stase/Pods-Stase-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Stase/Pods-Stase-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Stase/Pods-Stase-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A0BEA339FDB9692B2183F98D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Stase-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		407F4F3E24591109002552BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				407F4F4B24591109002552BE /* Stase.xcdatamodeld in Sources */,
+				407DF59F2499DC910055CA1F /* EnterDetailView.swift in Sources */,
+				40A82CC42487A4F90049FBF8 /* Constants.swift in Sources */,
+				407F4F4624591109002552BE /* AppDelegate.swift in Sources */,
+				407F4F4D24591109002552BE /* ContentView.swift in Sources */,
+				401C666324669F0900087B10 /* RequestAccess.swift in Sources */,
+				40A82CC624889D700049FBF8 /* SearchBar.swift in Sources */,
+				407DF5EA249E09280055CA1F /* RemoteLink.swift in Sources */,
+				407DF5A12499F0E80055CA1F /* MapView.swift in Sources */,
+				401C665D2466657200087B10 /* UserView.swift in Sources */,
+				407DF5E8249E05830055CA1F /* MainStaseView.swift in Sources */,
+				401C665B2466655B00087B10 /* FindView.swift in Sources */,
+				401C66572466650400087B10 /* HomeView.swift in Sources */,
+				407F4F4824591109002552BE /* SceneDelegate.swift in Sources */,
+				40A82CC22487A0C40049FBF8 /* LogInView.swift in Sources */,
+				401C66592466653300087B10 /* EnterView.swift in Sources */,
+				407DF5A32499F28C0055CA1F /* CircleImage.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		407F4F532459110C002552BE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				407F4F542459110C002552BE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		407F4F572459110C002552BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		407F4F582459110C002552BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		407F4F5A2459110C002552BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 485496BD5EB50B7A303A3A70 /* Pods-Stase.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Stase/Stase.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Stase/Preview Content\"";
+				DEVELOPMENT_TEAM = UH95U438GH;
+				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Stase/Frameworks",
+				);
+				INFOPLIST_FILE = Stase/Resore/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.0;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xbch.jjpt;
+				PRODUCT_NAME = Stase;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		407F4F5B2459110C002552BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 728ECC022E09386EE8F4E162 /* Pods-Stase.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Stase/Stase.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Stase/Preview Content\"";
+				DEVELOPMENT_TEAM = UH95U438GH;
+				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Stase/Frameworks",
+				);
+				INFOPLIST_FILE = Stase/Resore/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.0;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xbch.jjpt;
+				PRODUCT_NAME = Stase;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		407F4F3D24591109002552BE /* Build configuration list for PBXProject "Stase" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				407F4F572459110C002552BE /* Debug */,
+				407F4F582459110C002552BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		407F4F592459110C002552BE /* Build configuration list for PBXNativeTarget "Stase" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				407F4F5A2459110C002552BE /* Debug */,
+				407F4F5B2459110C002552BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		407F4F4924591109002552BE /* Stase.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				407F4F4A24591109002552BE /* Stase.xcdatamodel */,
+			);
+			currentVersion = 407F4F4A24591109002552BE /* Stase.xcdatamodel */;
+			path = Stase.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 407F4F3A24591109002552BE /* Project object */;
+}
