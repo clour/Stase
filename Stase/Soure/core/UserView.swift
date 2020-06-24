@@ -10,7 +10,10 @@ import SwiftUI
 
 struct UserView: View {
     
+    @ObservedObject var remote = RemoteLink.instance
+    
     @State private var isOride = false
+    @State private var isLogout: Bool = false
     
     init() {
         //UITableView.appearance().tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 8))
@@ -24,12 +27,12 @@ struct UserView: View {
     
     
     var body: some View{
-
-            ScrollView(showsIndicators: false){
-                VStack(spacing: 8){
-            NavigationLink(destination: MapView().edgesIgnoringSafeArea(.all).navigationBarTitle(""))
+        
+        ScrollView(showsIndicators: false){
+            VStack(spacing: 8){
+                NavigationLink(destination: MapView().edgesIgnoringSafeArea(.all).navigationBarTitle(""))
                 {
-                 UserTitleView(nickname: "宋志勇", depart: "常州市新北自然资源和规划技术保障中心", avatar: Image("girlPicture").renderingMode(.original)).foregroundColor(.primary)
+                    UserTitleView(nickname: "宋志勇", depart: "常州市新北自然资源和规划技术保障中心", avatar: Image("girlPicture").renderingMode(.original)).foregroundColor(.primary)
                 }
                 
                 Section{
@@ -38,8 +41,8 @@ struct UserView: View {
                     {
                         UserViewRow(title: "设置", icon: "gear", iColor: Color.blue).padding(.vertical,3)
                     }
-                    }.background(Color(.secondarySystemGroupedBackground))
-                    VStack(alignment: .trailing, spacing: 0){
+                }.background(Color(.secondarySystemGroupedBackground))
+                VStack(alignment: .trailing, spacing: 0){
                     NavigationLink(destination: MapView().edgesIgnoringSafeArea(.top).edgesIgnoringSafeArea(.bottom).navigationBarBackButtonHidden(false).navigationBarHidden(false))
                     {
                         UserViewRow(title: "收藏", icon: "heart", iColor: Color.red).padding(.vertical,3)
@@ -55,15 +58,20 @@ struct UserView: View {
                 Section{
                     UserViewRow(title: "退出登录", icon: "escape", iColor: Color.blue).padding(.vertical,3)
                     
-                }.background(Color(.secondarySystemGroupedBackground)).padding(.vertical,0)
-                
+                }.background(Color(.secondarySystemGroupedBackground)).padding(.vertical,0).onTapGesture {
+                    self.isLogout = true
                 }
-            }.background(VStack{Rectangle().frame(height: 150).background(Color(.secondarySystemGroupedBackground))
-                Spacer()
-            }).background(Color(.systemGroupedBackground)).edgesIgnoringSafeArea(.top).navigationBarTitle("").navigationBarHidden(true).onAppear(){
-                UIScrollView.appearance().bounces = false
-            }.onDisappear(){
-                UIScrollView.appearance().bounces = true
+                .alert(isPresented: $isLogout){
+                    return Alert(title: Text("警告"), message: Text("是否退出登录"), primaryButton: Alert.Button.default(Text("确定"), action: {self.remote.logout()}), secondaryButton: Alert.Button.cancel(Text("取消")))
+                }
+                
+            }
+        }.background(VStack{Rectangle().frame(height: 150).background(Color(.secondarySystemGroupedBackground))
+            Spacer()
+        }).background(Color(.systemGroupedBackground)).edgesIgnoringSafeArea(.top).navigationBarTitle("").navigationBarHidden(true).onAppear(){
+            UIScrollView.appearance().bounces = false
+        }.onDisappear(){
+            UIScrollView.appearance().bounces = true
         }
     }
 }
@@ -73,7 +81,7 @@ struct UserTitleView: View {
     @State var nickname: String
     @State var depart: String
     @State var avatar: Image
-
+    
     var body: some View {
         ZStack(alignment: .bottom){
             Rectangle().fill(Color.clear)
@@ -92,7 +100,7 @@ struct UserTitleView: View {
                 Image(systemName: "chevron.right")
                 
                 
-                }.padding(EdgeInsets(top: 20+UIApplication.shared.statusBarFrame.height, leading: 20, bottom: 25, trailing: 20))
+            }.padding(EdgeInsets(top: 20+UIApplication.shared.statusBarFrame.height, leading: 20, bottom: 25, trailing: 20))
             
         }.background(Color(.secondarySystemGroupedBackground))
     }

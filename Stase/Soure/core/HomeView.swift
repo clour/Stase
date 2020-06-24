@@ -34,11 +34,10 @@ struct HomeView: View {
           TopBarView()
 .modifier(HomeAnimationStyle(isAnimating: $isAnimating))
           SplitterView().modifier(HomeAnimationStyle(isAnimating: $isAnimating, delay: 0.2))
-          TopMenuView().modifier(HomeAnimationStyle(isAnimating: $isAnimating, delay: 0.4))
             
-          PieChartView().modifier(HomeAnimationStyle(isAnimating: $isAnimating, delay: 0.6))
+            FinanceBarChartView().padding(.vertical,10).modifier(HomeAnimationStyle(isAnimating: $isAnimating, delay: 0.6))
             
-          CountryListView().modifier(HomeAnimationStyle(isAnimating: $isAnimating, delay: 0.8))
+            CountryListView().padding(.top, 20).modifier(HomeAnimationStyle(isAnimating: $isAnimating, delay: 0.8))
         }.onAppear() {
         self.isAnimating = true
         }
@@ -226,6 +225,85 @@ struct CountryListView: View {
       }
     }.onAppear() {
       self.isAnimating = true
+    }
+  }
+}
+
+let decimalFormatter: NumberFormatter = {
+  let formatter = NumberFormatter()
+  formatter.numberStyle = .decimal
+  return formatter
+}()
+
+struct FinanceBarView: View {
+  private static let dateFormatte: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "MMM dd"
+    return formatter
+  }()
+  
+  var height: Double
+  var label: Date
+  var best = false
+  var havingSpacer = true
+  
+  @State private var isAnimating = false
+  
+  var body: some View {
+    HStack(alignment: .bottom) {
+      VStack {
+        Spacer()
+        Text("\(decimalFormatter.string(from: NSNumber(value: height))!)")
+          .offset(x: 0, y: isAnimating ? 0 : 60)
+          .opacity(isAnimating ? 1 : 0)
+          .animation(Animation.interpolatingSpring(stiffness: 100, damping: 10)
+            .delay(0.5))
+        RoundedRectangle(cornerRadius: 6)
+          .fill(Color(red: 80/255, green: 90/255, blue: 250/255))
+          .opacity(best ? 1 : 0.4)
+          .frame(width: 12, height: CGFloat(isAnimating ? height/10 : 0))
+          .animation(Animation.interpolatingSpring(stiffness: 100, damping: 10)
+            .delay(0.5))
+        Text("\(label, formatter: Self.dateFormatte)")
+      }.font(.system(size: 11))
+      .foregroundColor(best ? .primary : .secondary)
+      if havingSpacer {
+        Spacer()
+      }
+    }.frame(height: CGFloat(height/10))
+    .onAppear() {
+      self.isAnimating = true
+    }
+  }
+}
+
+struct FinanceBarChartView: View {
+  private static let dateFormatte: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "MMMM yyyy"
+    return formatter
+  }()
+  
+  var body: some View {
+    VStack {
+      HStack {
+        Spacer()
+        Image(systemName: "chevron.left")
+        Spacer()
+        Text("\(Date(), formatter: Self.dateFormatte)")
+        Spacer()
+        Image(systemName: "chevron.right")
+        Spacer()
+      }.padding(.bottom, 10)
+        .foregroundColor(Color(red: 80/255, green: 90/255, blue: 250/255))
+      HStack(alignment: .bottom) {
+        FinanceBarView(height: 700, label: Date())
+        FinanceBarView(height: 1000, label: Date())
+        FinanceBarView(height: 1200, label: Date())
+        FinanceBarView(height: 1600, label: Date(), best: true)
+        FinanceBarView(height: 600, label: Date())
+        FinanceBarView(height: 1100, label: Date(), havingSpacer: false)
+      }.padding(EdgeInsets(top: 30, leading: 30, bottom: 0, trailing: 30))
     }
   }
 }

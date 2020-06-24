@@ -10,24 +10,27 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var logState = false
-    
     @ObservedObject var remote = RemoteLink.instance
     
     init() {
-        //remote.login()
-        logState = remote.state
-        print(logState)
+        self.remote.getToken()
     }
     
     var body: some View {
         ZStack{
-        if remote.state {
-            MainStaseView()
+            if remote.state != nil {
+                if remote.state ?? false {
+                    MainStaseView()
+                }
+                else{
+                    LogInView()
+                }
             }
-        else{
-            LogInView()
+            else{
+                EmptyView()
             }
+        }.onAppear(){
+            self.remote.getToken()
         }
     }
 }

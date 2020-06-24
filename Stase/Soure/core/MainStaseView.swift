@@ -35,7 +35,7 @@ struct MainStaseView: View {
                     }
                 }
             .tag(1)
-                Text("Second View").onTapGesture {
+                FindView().onTapGesture {
                     self.remote.logout()
                 }
                 .font(.title)

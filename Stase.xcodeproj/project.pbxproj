@@ -25,6 +25,8 @@
 		407DF5E2249A14050055CA1F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407DF5E1249A14050055CA1F /* GLKit.framework */; };
 		407DF5E8249E05830055CA1F /* MainStaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407DF5E7249E05830055CA1F /* MainStaseView.swift */; };
 		407DF5EA249E09280055CA1F /* RemoteLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407DF5E9249E09280055CA1F /* RemoteLink.swift */; };
+		407DF5F124A2CD730055CA1F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407DF5F024A2CD730055CA1F /* Result.swift */; };
+		407DF5F324A2D1FC0055CA1F /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407DF5F224A2D1FC0055CA1F /* LocalStore.swift */; };
 		407F4F4624591109002552BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407F4F4524591109002552BE /* AppDelegate.swift */; };
 		407F4F4824591109002552BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407F4F4724591109002552BE /* SceneDelegate.swift */; };
 		407F4F4B24591109002552BE /* Stase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 407F4F4924591109002552BE /* Stase.xcdatamodeld */; };
@@ -60,6 +62,8 @@
 		407DF5E7249E05830055CA1F /* MainStaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStaseView.swift; sourceTree = "<group>"; };
 		407DF5E9249E09280055CA1F /* RemoteLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLink.swift; sourceTree = "<group>"; };
 		407DF5EB249E15C50055CA1F /* Stase.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Stase.entitlements; sourceTree = "<group>"; };
+		407DF5F024A2CD730055CA1F /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		407DF5F224A2D1FC0055CA1F /* LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStore.swift; sourceTree = "<group>"; };
 		407F4F4224591109002552BE /* Stase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		407F4F4524591109002552BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		407F4F4724591109002552BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +123,24 @@
 				407DF59E2499DC910055CA1F /* EnterDetailView.swift */,
 			);
 			path = enter;
+			sourceTree = "<group>";
+		};
+		407DF5EE24A2CCA90055CA1F /* net */ = {
+			isa = PBXGroup;
+			children = (
+				407DF5EF24A2CD4B0055CA1F /* response */,
+				407DF5E9249E09280055CA1F /* RemoteLink.swift */,
+			);
+			path = net;
+			sourceTree = "<group>";
+		};
+		407DF5EF24A2CD4B0055CA1F /* response */ = {
+			isa = PBXGroup;
+			children = (
+				407DF5F024A2CD730055CA1F /* Result.swift */,
+				407DF5F224A2D1FC0055CA1F /* LocalStore.swift */,
+			);
+			path = response;
 			sourceTree = "<group>";
 		};
 		407F4F3924591109002552BE = {
@@ -200,12 +222,12 @@
 		407F4F60245982F0002552BE /* base */ = {
 			isa = PBXGroup;
 			children = (
+				407DF5EE24A2CCA90055CA1F /* net */,
 				401C666224669F0900087B10 /* RequestAccess.swift */,
 				40A82CC32487A4F90049FBF8 /* Constants.swift */,
 				40A82CC524889D700049FBF8 /* SearchBar.swift */,
 				407DF5A02499F0E80055CA1F /* MapView.swift */,
 				407DF5A22499F28C0055CA1F /* CircleImage.swift */,
-				407DF5E9249E09280055CA1F /* RemoteLink.swift */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -366,10 +388,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				407DF5F124A2CD730055CA1F /* Result.swift in Sources */,
 				407F4F4B24591109002552BE /* Stase.xcdatamodeld in Sources */,
 				407DF59F2499DC910055CA1F /* EnterDetailView.swift in Sources */,
 				40A82CC42487A4F90049FBF8 /* Constants.swift in Sources */,
 				407F4F4624591109002552BE /* AppDelegate.swift in Sources */,
+				407DF5F324A2D1FC0055CA1F /* LocalStore.swift in Sources */,
 				407F4F4D24591109002552BE /* ContentView.swift in Sources */,
 				401C666324669F0900087B10 /* RequestAccess.swift in Sources */,
 				40A82CC624889D700049FBF8 /* SearchBar.swift in Sources */,
