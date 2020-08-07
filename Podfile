@@ -13,4 +13,5 @@ target 'Stase' do
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'SocketRocket'
+  pod 'ArcGIS-Runtime-Toolkit-iOS'
 end

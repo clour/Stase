@@ -17,7 +17,7 @@ let activeColor = Color.accentColor
 
 let regularFontSize: CGFloat = 15
 
-let chartWidth = UIScreen.main.bounds.width * 0.6
+let chartWidth = UIScreen.main.bounds.width * 0.55
 let menuWidth = UIScreen.main.bounds.width / 4
 
 struct Country: Identifiable {

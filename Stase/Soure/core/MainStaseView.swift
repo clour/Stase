@@ -14,20 +14,25 @@ struct MainStaseView: View {
     @State private var step = "经济平台"
     @ObservedObject var remote = RemoteLink.instance
     
+    init(){
+        //UITabView
+        
+    }
+    
     var body: some View {
         NavigationView {
             TabView(selection: $selection){
             
-            HomeView().navigationBarTitle("").navigationBarHidden(true)
+            HomeView().navigationBarTitle("首页").navigationBarHidden(true)
             .tabItem() {
                 VStack {
                     Image(systemName: selection == 0 ? "house.fill": "house").font(.system(size: UIFont.labelFontSize, weight: Font.Weight.thin))
                     Text("首页")
                 }
-            }
+                }
             .tag(0)
-            
-            EnterView().navigationBarTitle("").navigationBarHidden(true)
+                
+                    EnterView().navigationBarTitle("企业").navigationBarHidden(true)
                 .tabItem {
                     VStack {
                         Image(systemName: selection == 1 ? "flag.fill": "flag").font(Font.system(size: UIFont.labelFontSize, weight: Font.Weight.thin))
@@ -35,10 +40,7 @@ struct MainStaseView: View {
                     }
                 }
             .tag(1)
-                FindView().onTapGesture {
-                    self.remote.logout()
-                }
-                .font(.title)
+                FindView().navigationBarHidden(true)
                 .tabItem {
                     VStack {
                         Image(systemName: selection == 2 ? "cloud.fill": "cloud").font(Font.system(size: UIFont.labelFontSize, weight: Font.Weight.thin))
@@ -46,17 +48,17 @@ struct MainStaseView: View {
                     }
             }
             .tag(2)
-                UserView().tabItem {
+                
+                UserView().navigationBarTitle("我的").tabItem {
                     VStack {
                         Image(systemName: selection == 3 ? "person.fill": "person").font(Font.system(size: UIFont.labelFontSize, weight: Font.Weight.thin))
                         Text("我的")
                     }
-            }
-            .tag(3)
+                }
+                .tag(3).navigationBarHidden(true).navigationBarTitle("")
             
-                }.navigationBarTitle("").navigationBarHidden(true)
+            }
         }
-        
     }
 }
 

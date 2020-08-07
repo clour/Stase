@@ -28,20 +28,48 @@ struct HomeView: View {
     @State var isAnimating = false
     
     @State private var isButtonVisible = true
+    
+    @State private var showingMenuView = false
 
     var body: some View {
+        
         VStack {
           TopBarView()
-.modifier(HomeAnimationStyle(isAnimating: $isAnimating))
+            .modifier(HomeAnimationStyle(isAnimating: $isAnimating)).onTapGesture {
+                self.showingMenuView.toggle()
+            }
           SplitterView().modifier(HomeAnimationStyle(isAnimating: $isAnimating, delay: 0.2))
-            
+            ZStack {
+                VStack {
             FinanceBarChartView().padding(.vertical,10).modifier(HomeAnimationStyle(isAnimating: $isAnimating, delay: 0.6))
             
             CountryListView().padding(.top, 20).modifier(HomeAnimationStyle(isAnimating: $isAnimating, delay: 0.8))
         }.onAppear() {
         self.isAnimating = true
         }
-        
+            }
+            if self.showingMenuView {
+                MASSquareMenuView(isShowMenu: self.$showingMenuView) {
+                    Group {
+                        MASSquareMenuCell(itemName: "笔记", itemImageName: "square.and.pencil") {
+                            MapView()
+                        }
+                        MASSquareMenuCell(itemName: "广场", itemImageName: "burst") {
+                            MapView()
+                        }
+                        MASSquareMenuCell(itemName: "通知", itemImageName: "bell") {
+                            MapView()
+                        }
+                        MASSquareMenuCell(itemName: "收藏", itemImageName: "pin") {
+                            MapView()
+                        }
+                        MASSquareMenuCell(itemName: "设置", itemImageName: "ellipsis.circle") {
+                            MapView()
+                        }
+                    }
+                }.padding(.top, UIApplication.shared.statusBarFrame.height)
+            }
+        }
     }
     
     
@@ -121,78 +149,7 @@ struct MenuItemView: View {
   }
 }
 
-struct StatCircleView: View {
-  var diameter: CGFloat
-  var color: Color
-  
-  var startPoint: CGFloat
-  var endPoint: CGFloat
-  
-  var angle: Double
-  
-  @State var isAnimating = false
-  
-  var body: some View {
-    ZStack {
-      Circle()
-        .stroke(lineWidth: 2)
-        .fill(inactiveColor)
-        .frame(width: diameter, height: diameter)
-      Circle()
-        .trim(from: isAnimating ? startPoint : 0, to: isAnimating ? endPoint : 0)
-        .stroke(lineWidth: 4)
-        .fill(color)
-        .frame(width: diameter, height: diameter)
-        .rotationEffect(.degrees(isAnimating ? angle : -720))
-        .animation(.easeInOut(duration: 3))
-    }.onAppear() {
-      self.isAnimating = true
-    }
-  }
-}
 
-struct PieChartView: View {
-  var body: some View {
-    ZStack {
-      StatCircleView(
-        diameter: chartWidth,
-        color: activeColor,
-        startPoint: 0,
-        endPoint: 0.5,
-        angle: -45
-      )
-      StatCircleView(
-        diameter: chartWidth - 40,
-        color: .purple,
-        startPoint: 0,
-        endPoint: 0.4,
-        angle: 70
-      )
-      StatCircleView(
-        diameter: chartWidth - 80,
-        color: .green,
-        startPoint: 0,
-        endPoint: 0.3,
-        angle: 190
-      )
-      StatCircleView(
-        diameter: chartWidth - 120,
-        color: .yellow,
-        startPoint: 0,
-        endPoint: 0.2,
-        angle: 135
-      )
-      VStack {
-        Text("1383")
-          .font(.system(size: 32))
-          .foregroundColor(.primary)
-        Text("GDP")
-          .font(.system(size: 14))
-          .foregroundColor(Color.primary.opacity(0.5))
-      }
-    }.padding(.vertical, 15)
-  }
-}
 
 struct CountryListView: View {
   @State var isAnimating = false

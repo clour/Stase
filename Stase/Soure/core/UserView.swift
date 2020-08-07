@@ -27,52 +27,49 @@ struct UserView: View {
     
     
     var body: some View{
-        
-        ScrollView(showsIndicators: false){
-            VStack(spacing: 8){
-                NavigationLink(destination: MapView().edgesIgnoringSafeArea(.all).navigationBarTitle(""))
-                {
-                    UserTitleView(nickname: "宋志勇", depart: "常州市新北自然资源和规划技术保障中心", avatar: Image("girlPicture").renderingMode(.original)).foregroundColor(.primary)
-                }
-                
-                Section{
+        NavigationStackView{
+        VStack(spacing: 0){
+            
+            UserTitleView(nickname: "宋志勇", depart: "常州市新北自然资源和规划技术保障中心", avatar: Image("girlPicture").renderingMode(.original)).foregroundColor(.primary)
+            
+            ScrollView(showsIndicators: false){
+                VStack(spacing: 8){
                     
-                    NavigationLink(destination: MapView().edgesIgnoringSafeArea(.top).edgesIgnoringSafeArea(.bottom).navigationBarBackButtonHidden(false).navigationBarHidden(false))
-                    {
-                        UserViewRow(title: "设置", icon: "gear", iColor: Color.blue).padding(.vertical,3)
-                    }
-                }.background(Color(.secondarySystemGroupedBackground))
-                VStack(alignment: .trailing, spacing: 0){
-                    NavigationLink(destination: MapView().edgesIgnoringSafeArea(.top).edgesIgnoringSafeArea(.bottom).navigationBarBackButtonHidden(false).navigationBarHidden(false))
-                    {
-                        UserViewRow(title: "收藏", icon: "heart", iColor: Color.red).padding(.vertical,3)
-                    }
-                    Divider().frame(width: screenWidth - 60, height: 1, alignment: .trailing)
-                    UserViewRow(title: "关注", icon: "flag", iColor: Color.blue).padding(.vertical,3)
-                    Divider().frame(width: screenWidth - 60, height: 1, alignment: .trailing)
-                    UserViewRow(title: "修改密码", icon: "square.and.pencil", iColor: Color.orange).padding(.vertical,3)
-                    Divider().frame(width: screenWidth - 60, height: 1, alignment: .trailing)
-                    UserViewRow(title: "联系我们", icon: "phone", iColor: Color.green).padding(.vertical,3)
-                }.background(Color(.secondarySystemGroupedBackground)).padding(.vertical,0)
-                
-                Section{
-                    UserViewRow(title: "退出登录", icon: "escape", iColor: Color.blue).padding(.vertical,3)
                     
-                }.background(Color(.secondarySystemGroupedBackground)).padding(.vertical,0).onTapGesture {
-                    self.isLogout = true
+                    Section{
+                        
+                        PushView(destination: MapWiget())
+                        {
+                            UserViewRow(title: "设置", icon: "gear", iColor: Color.blue).padding(.vertical,3)
+                        }
+                    }.background(Color(.secondarySystemGroupedBackground))
+                    
+                    VStack(alignment: .trailing, spacing: 0){
+                        PushView(destination: MapWiget())
+                        {
+                            UserViewRow(title: "收藏", icon: "heart", iColor: Color.red).padding(.vertical,3)
+                        }
+                        Divider().frame(width: screenWidth - 60, height: 1, alignment: .trailing)
+                        UserViewRow(title: "关注", icon: "flag", iColor: Color.blue).padding(.vertical,3)
+                        Divider().frame(width: screenWidth - 60, height: 1, alignment: .trailing)
+                        UserViewRow(title: "修改密码", icon: "square.and.pencil", iColor: Color.orange).padding(.vertical,3)
+                        Divider().frame(width: screenWidth - 60, height: 1, alignment: .trailing)
+                        UserViewRow(title: "联系我们", icon: "phone", iColor: Color.green).padding(.vertical,3)
+                    }.background(Color(.secondarySystemGroupedBackground)).padding(.vertical,0)
+                    
+                    Section{
+                        UserViewRow(title: "退出登录", icon: "escape", iColor: Color.blue).padding(.vertical,3)
+                        
+                    }.background(Color(.secondarySystemGroupedBackground)).padding(.vertical,0).onTapGesture {
+                        self.isLogout = true
+                    }
+                    .alert(isPresented: $isLogout){
+                        return Alert(title: Text("警告"), message: Text("是否退出登录"), primaryButton: Alert.Button.default(Text("确定"), action: {self.remote.logout()}), secondaryButton: Alert.Button.cancel(Text("取消")))
+                    }
+                    
                 }
-                .alert(isPresented: $isLogout){
-                    return Alert(title: Text("警告"), message: Text("是否退出登录"), primaryButton: Alert.Button.default(Text("确定"), action: {self.remote.logout()}), secondaryButton: Alert.Button.cancel(Text("取消")))
-                }
-                
-            }
-        }.background(VStack{Rectangle().frame(height: 150).background(Color(.secondarySystemGroupedBackground))
-            Spacer()
-        }).background(Color(.systemGroupedBackground)).edgesIgnoringSafeArea(.top).navigationBarTitle("").navigationBarHidden(true).onAppear(){
-            UIScrollView.appearance().bounces = false
-        }.onDisappear(){
-            UIScrollView.appearance().bounces = true
-        }
+            }.padding(.top, 8).background(Color(.systemGroupedBackground))
+        }.edgesIgnoringSafeArea(.top)
     }
 }
 
@@ -86,23 +83,25 @@ struct UserTitleView: View {
         ZStack(alignment: .bottom){
             Rectangle().fill(Color.clear)
                 .frame(height: 150+UIApplication.shared.statusBarFrame.height, alignment: .center).overlay(Divider().frame(height: 3, alignment: .bottom), alignment: .bottom)
-            
-            HStack(spacing: 20) {
-                avatar.resizable().frame(width: 65, height: 65).mask(RoundedRectangle(cornerRadius: 8, style: .continuous))
-                
-                VStack(alignment: .leading){
-                    Text(nickname).bold().padding(.bottom, 7.5)
-                        .font(.system(size: 22))
+            PushView(destination: MapWiget())
+            {
+                HStack(spacing: 20) {
+                    avatar.resizable().frame(width: 65, height: 65).mask(RoundedRectangle(cornerRadius: 8, style: .continuous))
                     
-                    Text(depart).font(.system(size: 14))
-                }
-                
-                Image(systemName: "chevron.right")
-                
-                
-            }.padding(EdgeInsets(top: 20+UIApplication.shared.statusBarFrame.height, leading: 20, bottom: 25, trailing: 20))
-            
+                    VStack(alignment: .leading){
+                        Text(nickname).bold().padding(.bottom, 7.5)
+                            .font(.system(size: 22))
+                        
+                        Text(depart).font(.system(size: 14))
+                    }
+                    
+                    Image(systemName: "chevron.right")
+                    
+                    
+                }.padding(EdgeInsets(top: 20+UIApplication.shared.statusBarFrame.height, leading: 20, bottom: 25, trailing: 20))
+            }
         }.background(Color(.secondarySystemGroupedBackground))
+    }
     }
 }
 
@@ -127,7 +126,29 @@ struct UserViewRow: View {
             
             
         }.padding(.horizontal, 20)
-            .frame(height: 45)
+        .frame(height: 45)
+    }
+}
+
+struct MapWiget: View {
+    
+    var body: some View {
+        ZStack{
+            VStack(alignment: .leading){
+                PopView{
+                    Section{
+                    HStack{
+                    Image(systemName: "chevron.left").foregroundColor(.accentColor)
+                        Spacer()
+                    }.padding(.leading, 15)
+                    }
+                }
+                Spacer()
+            }
+            VStack{
+                Text("地图操作")
+            }
+        }.edgesIgnoringSafeArea(.bottom)//.navigationBarTitle("地图", displayMode: .inline).navigationBarBackButtonHidden(false).navigationBarHidden(false)
     }
 }
 

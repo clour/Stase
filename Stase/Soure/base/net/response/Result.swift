@@ -187,7 +187,7 @@ struct Token {
     }
     
     func isExpired() -> Bool {
-        return expires.compare(Date()) == ComparisonResult.orderedDescending
+        return expires.compare(Date()) == ComparisonResult.orderedAscending
     }
     
     func dictionary() -> Dictionary<String, Any> {

@@ -9,18 +9,27 @@
 import SwiftUI
 
 struct FindView: View {
-
+    
+    @State var title = "对标苏高新"
+    
     var body: some View {
         VStack {
-          TopBarView()
-          SplitterView()
-            
-            FinanceBarChartView().padding(.vertical,10)
-            
-            CountryListView().padding(.top, 20)
+            BarView(leading: Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
+                Image(systemName: "list.bullet.indent")
+            }, title: Text(title).bold(), trailing: Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/){
+                Image(systemName: "slider.horizontal.3")
+            })
+            ScrollView{
+                BemarkView()
+            }
         }
-        
     }
     
     
+}
+
+struct FindView_Previews: PreviewProvider {
+    static var previews: some View {
+        FindView()
+    }
 }

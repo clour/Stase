@@ -39,62 +39,107 @@ class RemoteLink: ObservableObject {
      直接Token请求
      */
     func token(method: HTTPMethod = .post,
-               parameters: Parameters? = nil) {
+               parameters: Parameters? = nil, call: ((_ success: Bool? , _ result: Any? , _ error: Error? )  -> Void)? = nil){
         tokenRequest(method: method, parameters: parameters).responseJSON { response
             in
             switch response.result.isSuccess {
             case true:
                 if let value = response.result.value{
-                    
                     let token_json = JSON(value).dictionaryValue
-                    
                     if let error = token_json[ErrorKey.error.rawValue] {
                         if let error_description = token_json[ErrorKey.error_description.rawValue]{
-                            //print(error_description)
-                            self.loginError = Error(error: error.stringValue, error_description: error_description.stringValue)
+                            if let localCall = call {
+                                localCall(false, nil, Error(error: error.stringValue, error_description: error_description.stringValue))
+                            }
                         }
                         else{
-                            self.loginError = Error(error: error.stringValue, error_description: "登录失败")
+                            if let localCall = call {
+                                localCall(false, nil, Error(error: error.stringValue, error_description: "用户验证失败"))
+                            }
                         }
-                        self.isError = true
-                        return
                     }
                     else{
                         if token_json[TokenKey.access_token.rawValue] != nil {
                             self.token = Token(token_json: token_json)
                             LocalStore.instance.saveToken(token: self.token)
-                            self.loginError = nil
-                            self.isError = false
-                            self.state = true
-                            return
+                            if let localCall = call {
+                                localCall(true, nil, nil)
+                            }
                         }
                         else{
-                            self.loginError = Error(error: "link_error", error_description: "登录失败")
-                            self.isError = true
-                            self.state = false
-                            return
+                            if let localCall = call {
+                                localCall(false, nil, Error(error: "link_error", error_description: "网络连接失败"))
+                            }
                         }
                     }
                 }
                 break;
             case false:
-                self.loginError = Error(error: "net_error", error_description: "登录失败")
-                self.isError = true
-                return
+                if let localCall = call {
+                    localCall(false, nil, Error(error: "net_error", error_description: "网络请求失败"))
+                }
             }
+        }
+    }
+    
+    /**
+     登录回调
+     */
+    func loginout(success: Bool? = nil, result: Any? = nil, error: Error? = nil) {
+        if success ?? false {
+            self.state = true
+        }
+        else{
+            self.loginError = error
+            self.isError = true
+            self.state = false
         }
     }
     
     /**
      当Token过期时调用此方法，用来刷行Token
      */
-    func refreshToken(){
+    func refreshToken(call: ((_ success: Bool? , _ result: Any? , _ error: Error? )  -> Void)? = nil) {
+        var processer: ((_ success: Bool? , _ result: Any? , _ error: Error? )  -> Void) = loginout
+        if let param = call {
+            processer = param
+        }
         if let localToken = token {
             let parameters:Dictionary = ["grant_type": "refresh_token", "refresh_token": localToken.refresh_token]
-            self.token(parameters: parameters)
+            
+            self.token(parameters: parameters, call: processer)
         }
         else{
-            token = nil
+            processer(false, nil, Error(error: "expired_error", error_description: "登录过期，请重新登录！"))
+        }
+    }
+    
+    /**
+     验证Token是否有效
+     */
+    func validate(call: ((_ success: Bool? , _ result: Any? , _ error: Error? )  -> Void)? = nil) {
+        func processer(success: Bool? = nil, result: Any? = nil, error: Error? = nil) {
+            if success ?? false {
+                (call ?? loginout)(success, result, error)
+            }
+            else{
+                self.loginError = error
+                self.isError = true
+                self.state = false
+            }
+        }
+        
+        if let localToken = token{
+            if(localToken.isExpired()){
+                refreshToken(call: processer)
+            }
+            else{
+                processer(success: true, result: nil, error: nil)
+            }
+        }
+        else{
+            self.loginError = Error(error: "expired_error", error_description: "匿名用户，请重新登录！")
+            self.isError = true
             self.state = false
         }
     }
@@ -118,102 +163,120 @@ class RemoteLink: ObservableObject {
         //参数
         let parameters:Dictionary = ["username":username,"password":password,
                                      "grant_type": "password"]
-        self.token(parameters: parameters)
+        self.token(parameters: parameters, call: loginout)
     }
     
-    func authPost(url: String, parameters: Parameters? = nil) -> JSON? {
-        var result: JSON? = nil
-        if let localToken = token{
-            if(localToken.isExpired()){
-                refreshToken()
-            }
-            let headers: HTTPHeaders = [
-                AuthKey.Authorization.rawValue: AuthKey.Bearer.rawValue + localToken.access_token,
-                "Accept": "application/json"
-            ]
-            Alamofire.request(AuthKey.host.rawValue + url, method: .post, parameters: parameters,encoding: URLEncoding.default,headers:headers).responseJSON { response
-                in
-                switch response.result.isSuccess {
-                case true:
-                    if let value = response.result.value{
-                        
-                        result = JSON(value)
-                        break;
+    func authPost(url: String, parameters: Parameters? = nil, call: ((_ success: Bool? , _ result: Any? , _ error: Error? )  -> Void)? = nil) {
+        
+        func processer(success: Bool? = nil, result: Any? = nil, error: Error? = nil) {
+            if success ?? false {
+                if let localToken = token {
+                    let headers: HTTPHeaders = [
+                        AuthKey.Authorization.rawValue: AuthKey.Bearer.rawValue + localToken.access_token,
+                        "Accept": "application/json"
+                    ]
+                    print(headers)
+                    print(AuthKey.host.rawValue + url)
+                    print(parameters)
+                    Alamofire.request(AuthKey.host.rawValue + url, method: .post, parameters: parameters,encoding: URLEncoding.default,headers:headers).responseJSON { response
+                        in
+                        switch response.result.isSuccess {
+                        case true:
+                            if let value = response.result.value{
+                                if let localCall = call {
+                                    localCall(true, JSON(value), nil)
+                                }
+                                break;
+                            }
+                        case false:
+                            if let localCall = call {
+                                localCall(false, nil, Error(error: "net_error", error_description: "网络请求失败"))
+                            }
+                        }
                     }
-                case false:
-                    result = nil
+                }
+                else{
+                    self.state = false
                 }
             }
+            else{
+                self.loginError = error
+                self.isError = true
+                self.state = false
+            }
         }
-        else{
-            self.state = false
-        }
-        return result
+        
+        validate(call: processer)
     }
     
-    func authGet(url: String, parameters: Parameters? = nil) -> JSON? {
-        var result: JSON? = nil
-        if let localToken = token{
-            if(localToken.isExpired()){
-                refreshToken()
-            }
-            let headers: HTTPHeaders = [
-                AuthKey.Authorization.rawValue: AuthKey.Bearer.rawValue + localToken.access_token,
-                "Accept": "application/json"
-            ]
-            Alamofire.request(AuthKey.host.rawValue + url, method: .get, parameters: parameters,encoding: URLEncoding.default,headers:headers).responseJSON { response
-                in
-                switch response.result.isSuccess {
-                case true:
-                    if let value = response.result.value{
-                        
-                        result = JSON(value)
-                        break;
-                        
+    func authGet(url: String, parameters: Parameters? = nil, call: ((_ success: Bool? , _ result: Any? , _ error: Error? )  -> Void)? = nil) {
+        func processer(success: Bool? = nil, result: Any? = nil, error: Error? = nil) {
+            if success ?? false {
+                if let localToken = token {
+                    
+                    let headers: HTTPHeaders = [
+                        AuthKey.Authorization.rawValue: AuthKey.Bearer.rawValue + localToken.access_token,
+                        "Accept": "application/json"
+                    ]
+                    Alamofire.request(AuthKey.host.rawValue + url, method: .get, parameters: parameters,encoding: URLEncoding.default,headers:headers).responseJSON { response
+                        in
+                        switch response.result.isSuccess {
+                        case true:
+                            if let value = response.result.value{
+                                if let localCall = call {
+                                    localCall(true, JSON(value), nil)
+                                }
+                                break;
+                            }
+                        case false:
+                            if let localCall = call {
+                                localCall(false, nil, Error(error: "net_error", error_description: "网络请求失败"))
+                            }
+                        }
                     }
-                    case false:
-                    result = nil
+                }
+                else{
+                    self.state = false
                 }
             }
+            else{
+                self.loginError = error
+                self.isError = true
+                self.state = false
+            }
         }
-        else{
-            self.state = false
-        }
-        return result
+        
+        validate(call: processer)
     }
     
     /**
      退出登录
      */
     func logout(){
-        LocalStore.instance.removeToken()
-        if let localToken = token {
-            let url = "auth/removeToken"
-            let parameters:Dictionary = [AuthKey.accesstoken.rawValue: localToken.access_token]
-            if let result = self.authPost(url: url, parameters: parameters) {
-                print(result)
-            }
+        func processer(success: Bool? = nil, result: Any? = nil, error: Error? = nil) {
             token = nil
+            LocalStore.instance.removeToken()
+            self.state = false
         }
         
-        self.state = false
+        if let localToken = token {
+            let url = "auth/auth/removeToken"
+            let parameters:Dictionary = [AuthKey.accesstoken.rawValue: localToken.access_token]
+            self.authPost(url: url, parameters: parameters, call: processer)
+        }
+        else{
+            token = nil
+            LocalStore.instance.removeToken()
+            self.state = false
+        }
+        
     }
     
     func getToken() {
         if let dictoken = LocalStore.instance.getToken() {
             self.token = Token(token_json: dictoken as! Dictionary<String, Any>)
             
-            if let localToken = token {
-                if localToken.isExpired() {
-                    refreshToken()
-                }
-                else{
-                    self.state = true
-                }
-            }
-            else{
-                self.state = false
-            }
+            validate()
         }
         else{
             self.token = nil
